@@ -54,6 +54,21 @@ except (binascii.Error, UnicodeDecodeError):
     print("Not a valid Hexadecimal")
 print(f"{MAGENTA}-------------------------------------------------------{RESET}")
 
+# ROT3 Decoding
+print("[*] ROT3 (Caesar):")
+rot3_mapping = str.maketrans(
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+    'XYZABCDEFGHIJKLMNOPQRSTUVWxyzabcdefghijklmnopqrstuvw')
+decoded = input_text.translate(rot3_mapping)
+print(decoded)
+
+if decoded != input_text:
+    # Second ROT3 decoding attempt (double encoding)
+    double_decoded = decoded.translate(rot3_mapping)
+    print("[*] Second ROT3 attempt (double encoding):")
+    print(double_decoded)
+
+print(f"{MAGENTA}-------------------------------------------------------{RESET}")
 
 # ROT13 Decoding
 print("[*] ROT13 (Caesar):")
@@ -65,8 +80,8 @@ if decoded != input_text:
     print("[*] Second ROT13 attempt (double encoding):")
     print(decoded.translate(str.maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 
                                           'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm')))
-
 print(f"{MAGENTA}-------------------------------------------------------{RESET}")
+
 # Base64 Decoding
 print("[*] Base64:")
 try:
